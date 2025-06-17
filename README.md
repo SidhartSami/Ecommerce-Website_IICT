@@ -19,7 +19,7 @@
 
 ## 📁 Project Structure
 
-Ozone/
+Ozone/<br>
 ├── images/ # Product & UI images<br>
 ├── HomePage.html # Landing page<br>
 ├── Login.html<br>
