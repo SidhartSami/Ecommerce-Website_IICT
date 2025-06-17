@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozone - Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        /* Header Styles from Checkout Page */
+        header {
+            background-color: #fff;
+            color: #333;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .brand img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .icons a, .icons img {
+            margin-left: 1.5rem;
+            color: #333;
+            font-size: 1.5rem;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .icons img {
+            height: 24px;
+            filter: none;
+            transition: transform 0.3s ease;
+        }
+
+        .icons a:hover img {
+            transform: scale(1.1); /* Slight size increase for pop effect */
+        }
+
+        /* Main Container Styles with Adjusted Spacing */
+        .main-wrapper {
+            min-height: calc(100vh - 140px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .form-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        .input-field::placeholder {
+            color: #999;
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            left: 18px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #000;
+            border: 2px solid #000;
+        }
+
+        .btn-secondary:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .forgot-password a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #000;
+        }
+
+        .image-section {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('Images/5.jpeg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .image-overlay h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .image-overlay p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .social-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .social-section h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .social-section p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .social-section img {
+            max-width: 300px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .social-section img:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: #fff;
+            padding: 60px 40px 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-section hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            margin-bottom: 20px;
+            width: 60%;
+        }
+
+        .footer-section p, .footer-section li {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-section img {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-section img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .brand img {
+                height: 40px;
+            }
+
+            .icons a, .icons img {
+                margin-left: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .icons img {
+                height: 20px;
+            }
+
+            .main-wrapper {
+                margin-top: 60px;
+            }
+
+            .container {
+                flex-direction: column;
+                margin: 20px;
+                border-radius: 15px;
+            }
+
+            .form-section {
+                padding: 40px 30px;
+            }
+
+            .form-section h2 {
+                font-size: 2rem;
+            }
+
+            .image-section {
+                min-height: 300px;
+                order: -1;
+            }
+
+            .image-overlay {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .social-section {
+                padding: 60px 20px;
+            }
+
+            .social-section h3 {
+                font-size: 1.6rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-section {
+                padding: 30px 20px;
+            }
+
+            .input-field {
+                padding: 14px 18px 14px 45px;
+            }
+
+            .btn {
+                padding: 14px 28px;
+            }
+        }
+
+        /* Original Product Page Styles */
+        main {
+            max-width: 1400px;
+            margin: 100px auto 40px;
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .sidebar label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #000;
+        }
+
+        .sidebar select, .sidebar input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            background: #fff;
+        }
+
+        .sidebar input[type="range"] {
+            accent-color: #007bff;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #000;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .item h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .item p.price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .item .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item button {
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .add-to-cart {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .add-to-cart:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .detail-btn {
+            background-color: #fff;
+            color: #007bff;
+            border: 2px solid #007bff;
+        }
+
+        .detail-btn:hover {
+            background-color: #e6f0fa;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            main {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .item {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .item h3 {
+                font-size: 1.2rem;
+            }
+
+            .item p.price {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <a href="HomePage.html">
+                <img src="Images/logo1.png" alt="Ozone Logo">
+            </a>
+        </div>
+        <div class="icons">
+            <a href="#"><img src="Images/search.png" alt="Search"></a>
+            <a href="LogIn.html"><img src="Images/user.png" alt="Log In"></a>
+            <a href="Cart.html"><img src="Images/cart.png" alt="Cart"></a>
+            <a href="#"><img src="Images/menu.png" alt="Menu"></a>
+        </div>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <h3>Filter Products</h3>
+            <label for="category">Category</label>
+            <select id="category">
+                <option value="all">All</option>
+                <option value="shirts">Shirts</option>
+                <option value="jackets">Jackets</option>
+                <option value="accessories">Accessories</option>
+                <option value="pants">Pants</option>
+            </select>
+            <label for="price">Price Range</label>
+            <input type="range" id="price" min="0" max="500" value="500">
+            <p>Max Price: $<span id="price-value">500</span></p>
+            <label for="sort">Sort By</label>
+            <select id="sort">
+                <option value="default">Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="name">Name: A to Z</option>
+            </select>
+        </aside>
+        <div class="content">
+            <div class="products-grid">
+                <form action="product.html" method="post">
+                    <div class="item">
+                        <img src="Images/casual_shirt.jpg" alt="Dress Shirt">
+                        <h3>Dress Shirt</h3>
+                        <p class="price">$45.00</p>
+                        <div class="actions">
+                            <button type="submit" class="detail-btn">View Details</button>
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="product.html" method="post">
+                    <div class="item">
+                        <img src="Images/Leather_Jack.jpg" alt="Leather Jacket">
+                        <h3>Leather Jacket</h3>
+                        <p class="price">$150.00</p>
+                        <div class="actions">
+                            <button type="submit" class="detail-btn">View Details</button>
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="product.html" method="post">
+                    <div class="item">
+                        <img src="Images/Wool_Shirt.jpeg" alt="Wool Hat">
+                        <h3>Wool Hat</h3>
+                        <p class="price">$25.00</p>
+                        <div class="actions">
+                            <button type="submit" class="detail-btn">View Details</button>
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="product.html" method="post">
+                    <div class="item">
+                        <img src="Images/Slim_Jeans.jpg" alt="Slim Fit Jeans">
+                        <h3>Slim Fit Jeans</h3>
+                        <p class="price">$60.00</p>
+                        <div class="actions">
+                            <button type="submit" class="detail-btn">View Details</button>
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="product.html" method="post">
+                    <div class="item">
+                        <img src="Images/Polo.jpg" alt="Polo Shirt">
+                        <h3>Polo Shirt</h3>
+                        <p class="price">$30.00</p>
+                        <div class="actions">
+                            <button type="submit" class="detail-btn">View Details</button>
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="product.html" method="post">
+                    <div class="item">
+                        <img src="Images/Turtle_Neck.jpg" alt="Turtle Neck">
+                        <h3>Turtle_Neck</h3>
+                        <p class="price">$90.00</p>
+                        <div class="actions">
+                            <button type="submit" class="detail-btn">View Details</button>
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="product.html" method="post">
+                    <div class="item">
+                        <img src="Images/Blazar.jpg" alt="Blazer">
+                        <h3>Blazer</h3>
+                        <p class="price">$120.00</p>
+                        <div class="actions">
+                            <button type="submit" class="detail-btn">View Details</button>
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="social-section">
+        <h3>DON'T MISS OUT ON ANY UPDATE</h3>
+        <p>Follow us on social media for the latest news and offers</p>
+        <img src="Images/SOCIAL.png" alt="Social Media Links">
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <hr>
+                <p>Send Mail</p>
+                <p>Contact@ozone.com.pk</p>
+                <p>UAN: 021 11-OZONE-11</p>
+                <p>MON-SAT 8:00 TO 5:30 PST</p>
+            </div>
+            <div class="footer-section">
+                <h3>FAQ'S</h3>
+                <hr>
+                <p>SHIPPING & DELIVERIES</p>
+                <p>EXCHANGE & RETURNS</p>
+                <p>PAYMENT METHODS</p>
+            </div>
+            <div class="footer-section">
+                <h3>ABOUT OZONE</h3>
+                <hr>
+                <a href="AboutUs.html">
+                    <p>ABOUT US</p>
+                </a>
+                <h3 style="margin-top: 20px;">RETAIL STORES</h3>
+                <hr>
+                <ul>
+                    <li>Karachi</li>
+                    <li>Quetta</li>
+                    <li>Islamabad</li>
+                </ul>
+                <p>WORK WITH US</p>
+            </div>
+            <div class="footer-section">
+                <h3>Download App</h3>
+                <hr>
+                <img src="Images/ANDORID.PNG" alt="Android App">
+                <img src="Images/IOS.PNG" alt="iOS App">
+                <h3 style="margin-top: 20px;">Payment Methods</h3>
+                <hr>
+                <img src="Images/VISA.PNG" alt="Visa">
+                <img src="Images/Mastercard.PNG" alt="Mastercard">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Price Range Slider
+        const priceRange = document.getElementById('price');
+        const priceValue = document.getElementById('price-value');
+        priceRange.addEventListener('input', () => {
+            priceValue.textContent = priceRange.value;
+        });
+
+        // Basic Filter Logic (Placeholder)
+        const categorySelect = document.getElementById('category');
+        const sortSelect = document.getElementById('sort');
+        const items = document.querySelectorAll('.item');
+
+        function filterProducts() {
+            const category = categorySelect.value;
+            const sort = sortSelect.value;
+            const maxPrice = parseInt(priceRange.value);
+
+            items.forEach(item => {
+                const itemCategory = item.querySelector('h3').textContent.toLowerCase();
+                const price = parseFloat(item.querySelector('.price').textContent.replace('$', ''));
+
+                let show = true;
+                if (category !== 'all') {
+                    if (category === 'shirts' && !['dress shirt', 'polo shirt', 'cashmere sweater'].includes(itemCategory)) show = false;
+                    if (category === 'jackets' && !['leather jacket', 'denim jacket', 'blazer'].includes(itemCategory)) show = false;
+                    if (category === 'accessories' && !['wool hat', 'casual belt', 'leather wallet', 'silk tie'].includes(itemCategory)) show = false;
+                    if (category === 'pants' && !['slim fit jeans', 'cargo pants'].includes(itemCategory)) show = false;
+                }
+
+                if (price > maxPrice) show = false;
+
+                item.style.display = show ? 'block' : 'none';
+            });
+
+            console.log(`Sort by: ${sort}`);
+        }
+
+        categorySelect.addEventListener('change', filterProducts);
+        sortSelect.addEventListener('change', filterProducts);
+        priceRange.addEventListener('change', filterProducts);
+    </script>
+</body>
+</html>

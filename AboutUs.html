@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Ozone - Men's Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Header Styles from Sign In Page */
+        header {
+            background-color: #fff;
+            color: #333;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .brand img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .icons a, .icons img {
+            margin-left: 1.5rem;
+            color: #333;
+            font-size: 1.5rem;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .icons img {
+            height: 24px;
+            filter: none;
+            transition: transform 0.3s ease;
+        }
+
+        .icons a:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        section.hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1488161628813-04466f872be2?w=600&h=900&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        .about-section h2::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background-color: #333;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .about-card p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .mission-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .mission-section h2::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background-color: #fff;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mission-card {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            background-color: #333;
+        }
+
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Section */
+        .social-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: #fff;
+        }
+
+        .social-section h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .social-section p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .social-section img {
+            max-width: 300px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .social-section img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: #fff;
+            padding: 60px 40px 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-section hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            margin-bottom: 20px;
+            width: 60%;
+        }
+
+        .footer-section p, .footer-section li {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-section img {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-section img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            header .icons {
+                gap: 15px;
+            }
+
+            header img {
+                height: 70px;
+            }
+
+            header .icons img {
+                height: 32px;
+                padding: 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-section h2, .mission-section h2 {
+                font-size: 2rem;
+            }
+
+            .social-section {
+                padding: 60px 20px;
+            }
+
+            .social-section h3 {
+                font-size: 1.6rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width:480px) {
+            .about-section {
+                padding: 30px 20px;
+            }
+
+            .mission-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <a href="HomePage.html">
+                <img src="Images/logo1.png" alt="Ozone Logo">
+            </a>
+        </div>
+        <div class="icons">
+            <a href="#"><img src="Images/search.png" alt="Search"></a>
+            <a href="LogIn.html"><img src="Images/user.png" alt="Log In"></a>
+            <a href="Cart.html"><img src="Images/cart.png" alt="Cart"></a>
+            <a href="#"><img src="Images/menu.png" alt="Menu"></a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About Ozone</h1>
+            <p>Discover the story behind Pakistan's leading men's fashion brand, crafted for the bold and the stylish.</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2>Our Story</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <p>Founded in 2020, Ozone emerged from a shared vision between two friends, Ahmed and Siddharth, who met at FAST University. United by their passion for fashion and innovation, they set out to redefine men's style in Pakistan.</p>
+            </div>
+            <div class="about-card">
+                <p>Ozone is more than a clothing brand—it's a lifestyle for the modern, spirited youth who embrace trends in fashion, music, and culture to express their individuality.</p>
+            </div>
+            <div class="about-card">
+                <p>From sleek streetwear to sophisticated casuals, our curated collections blend comfort with cutting-edge design. With 10+ stores across 4 cities and a thriving online platform, Ozone delivers quality and style nationwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <h2>Our Mission & Goals</h2>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <h3>Innovate Style</h3>
+                <p>Push the boundaries of men's fashion with bold designs and trend-setting collections that inspire confidence.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Sustainable Fashion</h3>
+                <p>Commit to eco-friendly practices, using sustainable materials to create clothing that’s kind to the planet.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Empower Expression</h3>
+                <p>Enable every individual to express their unique style through versatile, high-quality wardrobe essentials.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="social-section">
+        <h3>DON'T MISS OUT ON ANY UPDATE</h3>
+        <p>Follow us on social media for the latest news and offers</p>
+        <img src="Images/SOCIAL.png" alt="Social Media Links">
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <hr>
+                <p>Send Mail</p>
+                <p>Contact@ozone.com.pk</p>
+                <p>UAN: 021 11-OZONE-11</p>
+                <p>MON-SAT 8:00 TO 5:30 PST</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>FAQ'S</h3>
+                <hr>
+                <p>SHIPPING & DELIVERIES</p>
+                <p>EXCHANGE & RETURNS</p>
+                <p>PAYMENT METHODS</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>ABOUT OZONE</h3>
+                <hr>
+                <a href="AboutUs.html">
+                    <p>ABOUT US</p>
+                </a>
+                <h3 style="margin-top: 20px;">RETAIL STORES</h3>
+                <hr>
+                <ul>
+                    <li>Karachi</li>
+                    <li>Quetta</li>
+                    <li>Islamabad</li>
+                </ul>
+                <p>WORK WITH US</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Download App</h3>
+                <hr>
+                <img src="Images/ANDORID.PNG" alt="Android App">
+                <img src="Images/IOS.PNG" alt="iOS App">
+                <h3 style="margin-top: 20px;">Payment Methods</h3>
+                <hr>
+                <img src="Images/VISA.PNG" alt="Visa">
+                <img src="Images/Mastercard.PNG" alt="Mastercard">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

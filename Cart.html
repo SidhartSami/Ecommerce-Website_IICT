@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozone - Shopping Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #000;
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .brand img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .icons a, .icons img {
+            margin-left: 1.5rem;
+            color: #000;
+            font-size: 1.5rem;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .icons img {
+            height: 24px;
+            filter: none;
+            transition: transform 0.3s ease;
+        }
+
+        .icons a:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Main Content Styles */
+        main {
+            margin: 100px auto 40px;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .cart {
+            width: 65%;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .cart h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .cart-items {
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #000;
+        }
+
+        .product-image img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 5px;
+            border: 2px solid #000;
+        }
+
+        .product-info {
+            flex-grow: 1;
+        }
+
+        .product-info p {
+            margin: 5px 0;
+            color: #000;
+        }
+
+        .product-info p:first-child {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #000;
+            background: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .quantity button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quantity input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #000;
+            margin: 0 10px;
+            height: 30px;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            color: #0056b3;
+        }
+
+        .order-summary {
+            width: 30%;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .order-summary h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .order-summary p {
+            margin: 10px 0;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .order-summary select,
+        .order-summary input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #000;
+            background: #fff;
+        }
+
+        .order-summary button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-summary button:first-of-type {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .order-summary button:first-of-type:hover {
+            background-color: #0056b3;
+        }
+
+        .checkout-btn {
+            background-color: #007bff;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #000 0%, #000 100%);
+            color: #fff;
+            padding: 60px 40px 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-section hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            margin-bottom: 20px;
+            width: 60%;
+        }
+
+        .footer-section p, .footer-section li {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #007bff;
+        }
+
+        .footer-section img {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-section img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            header .icons {
+                gap: 15px;
+            }
+
+            header img {
+                height: 70px;
+            }
+
+            header .icons img {
+                height: 32px;
+                padding: 10px;
+            }
+
+            main {
+                flex-direction: column;
+                margin: 100px 20px 20px;
+            }
+
+            .cart,
+            .order-summary {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <a href="HomePage.html">
+                <img src="Images/logo1.png" alt="Ozone Logo">
+            </a>
+        </div>
+        <div class="icons">
+            <a href="#"><img src="Images/search.png" alt="Search"></a>
+            <a href="LogIn.html"><img src="Images/user.png" alt="Login"></a>
+            <a href="Cart.html"><img src="Images/cart.png" alt="Cart"></a>
+            <a href="#"><img src="Images/menu.png" alt="Menu"></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items">
+                <div class="cart-item">
+                    <div class="product-image">
+                        <img src="Images/CheckOut.jpg" alt="Men's Slim Fit Shirt">
+                    </div>
+                    <div class="product-info">
+                        <p>Men's Slim Fit Shirt</p>
+                        <p>$89.99</p>
+                        <div class="quantity">
+                            <button>-</button>
+                            <input type="number" value="1" min="1">
+                            <button>+</button>
+                        </div>
+                        <button class="remove-btn">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <p>Items: 1</p>
+            <p>$89.99</p>
+            <p>Shipping</p>
+            <select>
+                <option>Standard Delivery - $5.00</option>
+            </select>
+            <p>Promo Code</p>
+            <input type="text" placeholder="Enter code">
+            <button>APPLY</button>
+            <p>Total Cost</p>
+            <p>$94.99</p>
+            <button class="checkout-btn">CHECKOUT</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <hr>
+                <p>Send Mail</p>
+                <p>Contact@ozone.com.pk</p>
+                <p>UAN: 021 11-OZONE-11</p>
+                <p>MON-SAT 8:00 TO 5:30 PST</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>FAQ'S</h3>
+                <hr>
+                <p>SHIPPING & DELIVERIES</p>
+                <p>EXCHANGE & RETURNS</p>
+                <p>PAYMENT METHODS</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>ABOUT OZONE</h3>
+                <hr>
+                <a href="AboutUs.html">
+                    <p>ABOUT US</p>
+                </a>
+                <h3 style="margin-top: 20px;">RETAIL STORES</h3>
+                <hr>
+                <ul>
+                    <li>Karachi</li>
+                    <li>Quetta</li>
+                    <li>Islamabad</li>
+                </ul>
+                <p>WORK WITH US</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Download App</h3>
+                <hr>
+                <img src="Images/ANDORID.PNG" alt="Android App">
+                <img src="Images/IOS.PNG" alt="iOS App">
+                <h3 style="margin-top: 20px;">Payment Methods</h3>
+                <hr>
+                <img src="Images/VISA.PNG" alt="Visa">
+                <img src="Images/Mastercard.PNG" alt="Mastercard">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
