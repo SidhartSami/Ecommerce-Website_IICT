@@ -4,7 +4,7 @@
 
 ---
 
-# Live Demo:  https://sidhartsami.github.io/Ecommerce-Website_IICT
+Live Demo: https://sidhartsami.github.io/Ecommerce-Website_IICT
 
 ---
 ## 🔥 Features
