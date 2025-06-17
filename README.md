@@ -20,16 +20,16 @@
 ## 📁 Project Structure
 
 Ozone/
-├── images/ # Product & UI images
-├── HomePage.html # Landing page
-├── Login.html
-├── SignUp.html
-├── Product_Page.html # Product listings
-├── Detail.html # Individual product page
-├── Cart.html
-├── Checkout.html
-├── AboutUs.html 
-└── README.md
+├── images/ # Product & UI images<br>
+├── HomePage.html # Landing page<br>
+├── Login.html<br>
+├── SignUp.html<br>
+├── Product_Page.html # Product listings<br>
+├── Detail.html # Individual product page<br>
+├── Cart.html<br>
+├── Checkout.html<br>
+├── AboutUs.html <br>
+└── README.md<br>
 
 ---
 
